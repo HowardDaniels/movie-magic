@@ -1,5 +1,4 @@
-DROP DATABASE IF EXISTS exampledb;
-CREATE DATABASE exampledb;
+DROP DATABASE IF EXISTS movie_magic_db;
+CREATE DATABASE movie_magic_db;
 
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
+
