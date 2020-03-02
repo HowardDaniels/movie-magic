@@ -77,5 +77,23 @@ module.exports = function(app) {
 // SELECT username FROM users_db WHERE favoriteActor3 = users[users.length].favoriteActor3;
 // for each of these usernames, buddies[i].points += 7;
 // SELECT username FROM users_db WHERE favoriteDirector = users[users.length].favoriteDirector;
-// for each of these usernames, buddies[i].points += 7;
+// for each of these usernames, buddies[i].points += 6;
+// SELECT username FROM users_db WHERE favoriteDirector2 = users[users.length].favoriteDirector2;
+// for each of these usernames, buddies[i].points += 5;
+// SELECT username FROM users_db WHERE favoriteDirector3 = users[users.length].favoriteDirector3;
+// for each of these usernames, buddies[i].points += 4;
+// SELECT username FROM users_db WHERE favoriteGenre = users[users.length].favoriteGenre;
+// for each of these usernames, buddies[i].points += 3;
+// SELECT username FROM users_db WHERE favoriteGenre2 = users[users.length].favoriteGenre2;
+// for each of these usernames, buddies[i].points += 2;
+// SELECT username FROM users_db WHERE favoriteGenre3 = users[users.length].favoriteGenre3;
+// for each of these usernames, buddies[i].points += 1;
+
+// remove user from buddies array
+// if (location provided) {
+// order buddies by points and location
+//}
+// else {
+// only order buddies by points
+//}
 // });
