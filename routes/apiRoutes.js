@@ -75,6 +75,7 @@ module.exports = function(app) {
 // SELECT username FROM users_db WHERE favoriteActor2 = users[users.length].favoriteActor2;
 // for each of these usernames, buddies[i].points += 8;
 // SELECT username FROM users_db WHERE favoriteActor3 = users[users.length].favoriteActor3;
-
+// for each of these usernames, buddies[i].points += 7;
+// SELECT username FROM users_db WHERE favoriteDirector = users[users.length].favoriteDirector;
 // for each of these usernames, buddies[i].points += 7;
 // });
