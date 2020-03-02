@@ -4,12 +4,12 @@ module.exports = function(sequelize, DataTypes) {
   var user = sequelize.define("user", {
     id: {
         type: DataTypes.INTEGER,
-        PrimaryKey:true,
+        primaryKey:true,
         autoIncrement:true,
         allowNull: false },
 
     Password: {
-        Type: DataTypes.STRING(50),
+        type: DataTypes.STRING(50),
         allowNull: false
       },  
 
@@ -104,11 +104,11 @@ module.exports = function(sequelize, DataTypes) {
     },
   });
 
-    User.prototype.validPassword = function(password) {
-      return bcrypt.compareSync(password, this.password);
+    user.prototype.validPassword = function(Password) {
+      return bcrypt.compareSync(Password, this.Password);
     };
-    User.addHook("beforeCreate", function(user) {
-      user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
+    user.addHook("beforeCreate", function(user) {
+      user.Password = bcrypt.hashSync(user.Password, bcrypt.genSaltSync(10), null);
 
    
    return user;

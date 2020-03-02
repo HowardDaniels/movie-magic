@@ -1,3 +1,7 @@
+//make sure that the db.user is the correct talle name.
+//and the variable username and password are the correct ones being used.
+var db = require("../models");
+
 var moment = require('moment');
 var request = require('ajax-request');
 var $ = require('jQuery')
@@ -5,7 +9,7 @@ var $ = require('jQuery')
 
 
 
-var movieSearchOne = function(){
+var movieSearchOne = function(numberOfMovies){
 var MyUserName = req.user.username;
 var password = password;
 
@@ -22,7 +26,7 @@ var password = password;
      var favDirectors=[];
      var favGenres=[];
      var miscNames=[];
-     
+     //pushes the hardcoded names and information into relevant arrays
     favMovies.push(dbuser.movie-one, dbuser.movie_two, dbuser.movie_three);
     favActors.push(dbuser.actor-one, dbuser.actor_two, dbuser.actor_three);
     favDirectors.push(dbuser.director-one, dbuser.director_two, dbuser.director_three);
@@ -33,8 +37,9 @@ var password = password;
     
     
     
-    var movieSearchTwo = function(favMovies,favActors,favDirectors,favGenres,miscNames,){
-      
+    var movieSearchTwo = function(favMovies,favActors,favDirectors,favGenres,miscNames,numberOfMovies){
+      //find the information pertaining to the user's favorite movies.
+      //the information is then pushed into the miscnames array.
       for (var i=0; i<favMovies.length;i++){
       var queryURL=`http:www.omdbapi.com/T=${favMovies[i]}&apikey=7e6191f4`;
 
@@ -46,7 +51,7 @@ var password = password;
            
           var foundActors=response.Actors;
           var foundDirectors=response.Director;
-          var foundGenre=response.genre;
+          var foundGenre=response.Genre;
           var foundWriters=response.writer;
 
           foundActors=foundActors.split(",");
@@ -69,7 +74,10 @@ var password = password;
           movieSearchThree();
       })}};
 
-      var movieSearchThree = function(favMovies,favActors,favDirectors,favGenres,miscNames,){
+      //find the movies that are showing at the moment of search.
+
+
+      var movieSearchThree = function(favMovies,favActors,favDirectors,favGenres,miscNames,numberOfMovies){
       var now = moment();
       var weekinpast=now.endOf("weeks").subtract(1,"weeks").subtract(1,"days").format("YYYY-MM-DD").toString();
       var weekinfuture=now.endOf("weeks").add(1, "weeks").subtract(1,"days").format("YYYY-MM-DD").toString();
@@ -84,166 +92,129 @@ var password = password;
         method: 'GET',
        
       }, function(err, res, body) {
+        
         var results= body.results;
         results=results.slice(0,21);
-        for(i=0; i<results.length;i++){
+        var chosenMovies=[];
+        var resultTitles=[];
+        for(var i=0; i<results.length;i++){
+          resultTitles.push(results.original_title)}
+          //start of the operataion to search for info on each movie
+        for(var i=0; i<resultTitles;i++){
+        //for each of the fond movie titles, a query is made to collect all of the cast and crew informaiton 
+          //of the collected movies
+          var queryURL=`http:www.omdbapi.com/T=${resultTitles[i]}&apikey=7e6191f4`;
           
-        }
+
+          request({
+            url: queryURL,
+            method: 'GET',
+           
+          }, function(err, res, body) {
+            var score=body.Metascore*.1;
+            var newFoundActorString=body.Actors;
+            var newFoundDirectorString=body.Director;
+            var newFoundGenreString=body.Genre;  
+            var newFoundWriterString=body.Writer;
+            var newFoundPoster=body.Poster;
+
+            newFoundActorArray=newFoundActorString.split(",");
+          for(i=0; i<newFoundActorArray.length; i++){
+           var temp = newFoundActorArray[i].trim(" ").replace(/ *\([^)]*\) */g, "");
+           newFoundActorArray[i]=temp;
+          };
+          newFoundDirectorArray=newFoundDirectorString.split(",");
+          for(i=0; i<newFoundDirectorArray.length; i++){
+           var temp = newFoundDirectorArray[i].trim(" ").replace(/ *\([^)]*\) */g, "");
+           newFoundDirectorArray[i]=temp;
+          }; 
+          newFoundGenre=newFoundGenreString.split(",");
+          for(i=0; i<newFoundWriterArray.length; i++){
+           var temp = newFoundWriterArray[i].trim(" ").replace(/ *\([^)]*\) */g, "");
+           newFoundWriterArray[i]=temp;
+          }; 
+          newFoundWriterArray=newFoundWriterString.split(",");
+          for(i=0; i<newFoundWriterArray.length; i++){
+           var temp = newFoundWriterArray[i].trim(" ").replace(/ *\([^)]*\) */g, "");
+           newFoundWriterArray[i]=temp;
+          }; 
+
+          for(var i=0;i<newFoundActorArray.length;i++){
+            if(favActors.indexOf(newFoundActorArray[i]>-1)){
+              score+=10;
+            }
+          };
+          for(var i=0;i<newFoundDirectorArray.length;i++){
+            if(favDirectors.indexOf(newFoundDirectorArray[i]>-1)){
+              score+=10;
+            }
+          };
+          for(var i=0;i<newFoundGenreArray.length;i++){
+            if(favGenres.indexOf(newFoundActorArray[i]>-1)){
+              score+=10;
+            }
+          };
+
+          var newFoundMiscArray=concat(newFoundWriterArray,newFoundActorArray,newFoundDirectorArray,newFoundGenreArray);
+          for(var i=0;i<newFoundMiscArray.length;i++)
+            {
+              if (miscNames.indexOf(newFoundMiscArray[i]>-1)){
+                score++;
+              }};
+          var tomatoTitle=resultTitles[i].replace(" ","_");
+          var newRottenTomatoLink = `https://www.rottentomatoes.com/m/${tomatoTitle}`
+
+              var newMoiveObject={
+                title:resultTitles[i],
+                movieScore:score,
+                poster:newFoundPoster,
+                rottenTomatoLink:newRottenTomatoLink 
+                
+              };
+              chosenMovies.push(newMoiveObject);
+              });
+         }});
+         movieSearchFour();
         
-          
-        
-      });
     
-        
+  };
+  var movieSearchFour = function(chosenMovies,favActors,favDirectors,favGenres,miscNames,numberOfMovies){
+    //sort the array  of the movie objects and pick out the the top ones numbered as the numberOfMOvies Variable
 
-
+    for (let i=1; i<chosenMovies.length; i++){
+      let j=i-1;
+      let tmp = chosenMovies[i];
+      while(j>=0 && chosenMovies[j].movieScore > tmp.movieScore){
+        chosenMovies[j+1] = chosenMovies[j];
+        j--
       }
+      chosenMovies[j+1]=tmp
+}
 
-      // https://www.rottentomatoes.com/m/batman_forever
-      //https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2020-02-22&primary_release_date.lte=2020-02-22&api_key=052554d7a6faad5978b2ef60814ccc5d
-
-    
-
-      // We have access to the todos as an argument inside of the callback function
-       
-    
-  
-
-
-
-
-
-
-
-//wait for click on the "search current movies" button
-//once clicked, the "search movie function is called" and the user is taken to the results page via the "action" of the button
-// or by res.render(__dirname, "results.html");
-//searchMovie: 
-// a query is made to the user table in the database to get the favorite actors of the user and set them into three variables
-//favActorOne, favActorTwo, favActorThree,
-// a query is made to the user table in the database to get the favorite directors of the user and set them into three variables
-//favDirectorOne, favDirectorTwo, favDirectorThree.
-// the fav genre is also 
-//a query is made to get the user's three favorite movies and they are pushed into an array
-// an empty actorNameMovie array, empty directorNameMovie array, empty assortedNameMovie  array are created
-//most favorite is favMovie[0], second is favMovie[1].favMOvie[2] etc.
-//for each of the titles in the favMovies array,
-    //perform a API GET from the OMDB using the movie title as search parameter
-    //once the data is received, the actor names in the data is put into a variable called actors.
-    //the actor string is then parsed into an array by using the "split(",") function 
-    //for each of the names in this current array, it is pushed into the prevousely empty actor names array
-    // the actor names is pushed into the previousely empty actorNameMovie array
-    // the director/directors name is stored   into an variable
-    // the directorName is then parsed into an array by using the "split(",") function
-    // for each of this array, the name is pushed into the previousely empty directorNameMovie array
-    // the directors name array is then pushed
-    // the writer, producer, composers, etc are then pushed into the assortedNameMovie array,
-    
-
-//then an api call is made to search all of the movies with an release date ranged from a week from the time of search to one week in the future
-//limit the list to 20 movies.
-//an array all movies is created
-//an array chosen movie is created
-//for each of the the twenty movies: 
-    //the actor names, director names, all names are pushed into an array named movieNames array
-    //a variable movieObject is created as an object
-    //a variable called score is created and is set to the value of the rotten tomato score times 0.1
-    //for all the names in the movieNamesArray, 
-        //if movieNamesArray[i] = favActorOne, score +10, favActorTwo, +=9, favActorThree,+=8,
-        //favDirectorOne, +=10(etc..) assorted names match +=1
-    //if current movie genre = fav genre, score +=2
-    //movie object = {title: movie.title, score:movie.score}
-    //the movieObject is pushed to the all movies array
-//sort the array based on the value of each of the movie score
-
-
-// const insertionSort = (allmovies) => {
-//     for (let i = 1; i <allmovies.length; i++) {
-//       let j = i - 1
-//       let tmp = allmovies[i]
-//       while (j >= 0 && allmovies[j].score > tmp.score) {
-//         allmovies[j + 1] = allmovies[j]
-//         j--
-//       }
-//       allmivies[j+1] = tmp
-//     }
-//     return nums
-
-//push the first 5-10 movie.title with the highest score into the chosen Movie array
-//for each of the movies in the chosen array, a get API action is performed. 
-// a posters array is created.
-// the the web address of each of the movie's poster is then pushed into the posters array
-//for first 5  of the movies in chosen each of the posters is pushed into the rotating display.
-//their title will be displayed on the borrom of the poster and their rotten tomatos link will be embeded into the poster 
-// when clicked goes to the corresponding rotten tomatos site.
-//there will be a forward and backwards button for the display.  
-//when forward button it bushed, and if the first one in the display is the the first one in the array, 
-//postedDisplay.attr("value") = 0, posterDisplay.attr("value")=posters.length-1
-//then distribute posters again
-// the backwards button is pushed and teh 5th of the display's valu is equal to poster.length-1, poster[i].value=0
-//distribute again.
-
-
-
-
-//   // GET route for getting all of the todos
-//   app.get("/api/todos", function(req, res) {
-//     // findAll returns all entries for a table when used with no options
-//     db.Todo.findAll({}).then(function(dbTodo) {
-//       // We have access to the todos as an argument inside of the callback function
-//       res.json(dbTodo);
-//     });
+// app.post("/api/result", function(req, res) {
+//   db.Example.create(req.body).then(function(dbExample) {
+//     res.json(dbExample);
 //   });
+// });
 
-//   // POST route for saving a new todo
-//   app.post("/api/todos", function(req, res) {
-//     // create takes an argument of an object describing the item we want to
-//     // insert into our table. In this case we just we pass in an object with a text
-//     // and complete property
-//     db.Todo.create({
-//       text: req.body.text,
-//       complete: req.body.complete
-//     }).then(function(dbTodo) {
-//       // We have access to the new todo as an argument inside of the callback function
-//       res.json(dbTodo);
-//     });
-//   });
+//pulling the top scoring movies out
+chosenMovies=chosenMovies.slice(0,numberOfMovies+1);
+//deploy movie posters
 
-//   // DELETE route for deleting todos. We can get the id of the todo to be deleted from
-//   // req.params.id
-//   app.delete("/api/todos/:id", function(req, res) {
-//     // We just have to specify which todo we want to destroy with "where"
-//     db.Todo.destroy({
-//       where: {
-//         id: req.params.id
-//       }
-//     }).then(function(dbTodo) {
-//       res.json(dbTodo);
-//     });
+render("index", {
+  msg: "Welcome!",
+  examples: dbExamples
+});
 
-//   });
 
-//   // PUT route for updating todos. We can get the updated todo data from req.body
-//   app.put("/api/todos", function(req, res) {
-//     // Update takes in an object describing the properties we want to update, and
-//     // we use where to describe which objects we want to update
-//     db.Todo.update({
-//       text: req.body.text,
-//       complete: req.body.complete
-//     }, {
-//       where: {
-//         id: req.body.id
-//       }
-//     }).then(function(dbTodo) {
-//       res.json(dbTodo);
-//     });
-//   });
 
-// };
-https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2020-02-22&primary_release_date.lte=2020-02-22&api_key=052554d7a6faad5978b2ef60814ccc5d
-// queryURL = "https://api.openweathermap.org/data/2.5/weather?q="+cityInput+","+countryInput+"&appid=" + APIKey;}
 
-// $.ajax({
-//           url: queryURL,
-//           method: "GET"
-//         }).then(function(response) 
+
+
+
+
+
+
+
+
+  }
