@@ -31,9 +31,9 @@ CREATE TABLE IF NOT EXISTS `movie-magic`.`reviews` (
   `Favorite_Movie` VARCHAR (20) NOT NULL,
   `2nd_Favorite_Movie` VARCHAR (20) NOT NULL,
   `3rd_Favorite_Movies` VARCHAR (20) NOT NULL,
-  `Favorite_Actors` VARCHAR(20) NOT NULL,
-   `2nd_Favorite_Actors` VARCHAR(20) NOT NULL,
-    `3rd_Favorite_Actors` VARCHAR(20) NOT NULL,
+  `Favorite_Actor` VARCHAR(20) NOT NULL,
+   `2nd_Favorite_Actor` VARCHAR(20) NOT NULL,
+    `3rd_Favorite_Actor` VARCHAR(20) NOT NULL,
   `review` TEXT(255) NOT NULL,
   PRIMARY KEY (`reviewID`))
 ENGINE = InnoDB;
@@ -62,7 +62,7 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
-INSERT INTO users (userID, username, password, first_name, last_name, email) VALUES (1, "test", "password", "first", "last", "firstlast@mail.com") ;
+INSERT INTO users (userID, username, password, email) VALUES ("password", "username", "email@mail.com") ;
 INSERT INTO reviews (reviewID, review_title, rating, review, userID, movieID) VALUES (1, "test review", 6, "Test", 1, 1);
 
 
