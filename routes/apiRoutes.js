@@ -1,5 +1,7 @@
 var db = require("../models");
 
+var buddySearch = require("../public/js/buddy-search.js");
+
 module.exports = function(app) {
   // Get all examples
   app.get("/api/examples", function(req, res) {
