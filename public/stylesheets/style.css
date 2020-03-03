@@ -1,0 +1,65 @@
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+
+
+
+.list-group-item {
+  line-height: 2.5;
+}
+form.signup,
+form.login {
+  margin-top: 50px; 
+
+}
+
+.login-title {
+  color: white;
+  
+}
+
+.login-body {
+  background-image: url("./images/thea_7.jpg") !important;
+  position: relative;
+  overflow: hidden;
+  background-size: 100%;
+background-size:     cover;                      /* <------ */
+background-repeat:   no-repeat;
+background-position: center center;
+
+  
+}
+
+.login-screen {
+  margin-bottom: 30px;
+  
+}
+
+.row-login {
+  margin-top: 200px;
+  padding-bottom: 50px;
+  color: white;
+  border-radius: 25px;
+  background-color:#34495E ;
+  opacity: .8;
+}
+
+label, .login-text {
+  color:  white;
+}
+
+#member-page {
+background-image: url("./images/thea_6.jpg") !important; 
+background-size: 100%;
+background-size:     cover;                    
+background-repeat:   no-repeat;
+background-position: center center;
+}
+
+.form-member {
+  padding: 10px;
+}
+
+

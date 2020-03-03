@@ -1,14 +1,14 @@
 {
   "development": {
-    "username": "elw0pptkq53ugc4j",
-    "password": "xvzc4lzyacx5w2l3",
-    "database": "kfv3lhx00o99x94w",
-    "host": "fugfonv8odxxolj8.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "username": "root",
+    "password": "testtest",
+    "database": "movie_magicdb",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": null,
+    "password": "testtest",
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",

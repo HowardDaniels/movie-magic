@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Passport Authentication</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+  <link href="stylesheets/style.css" rel="stylesheet">
+</head>
+
+<body id="member-page">
+  <nav class="navbar navbar-default">
+  <div class="container-fluid bg-danger" >
+    <div class="navbar-header ">
+      <a class="navbar-brand" style = "color: white;" href="/logout">
+        Logout
+      </a>
+    </div>
+  </div>
+</nav>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Welcome to Movie Magic, <span class="member-name" ></span></h2>
+        <h3>Please fill your profile below:</h3>
+        <form class="form-member bg-danger">
+          <fieldset disabled>
+            <div class="form-group">
+              <label for="disabledTextInput">Disabled input</label>
+              <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+            </div>
+            <div class="form-group">
+              <label for="username">select your username</label>
+              <select id="disabledSelect" class="form-control">
+                <option>Disabled select</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="disabledSelect">Disabled select menu</label>
+              <select id="disabledSelect" class="form-control">
+                <option>Disabled select</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="disabledSelect">Disabled select menu</label>
+              <select id="disabledSelect" class="form-control">
+                <option>Disabled select</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="disabledFieldsetCheck">
+                Yes, include me in the buddy match. 
+            
+                <label class="form-check-label" style = "color: white;" for="disabledFieldsetCheck">
+              
+              By joining Movie Magic's Buddy Match feature you agree that you are over 18 years old and agree to the Terms and Conditions.
+                </label>
+                
+              </div>
+              
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </fieldset>
+        </form>
+        <form action="/results" method="GET">
+          <input style="float:center;" type="text" name="searchValue" placeholder="search movie here">
+          <input type="submit">
+      </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/members.js"></script>
+
+</body>
+
+</html>
