@@ -4,7 +4,8 @@ var passport = require("../config/passport");
 module.exports = function(app) {
   // If the user has valid login credentials, send them to the members page. Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
-    res.json(req.user);
+
+    res.render(req.user);
   });
 
   // Route for signing up a user.
