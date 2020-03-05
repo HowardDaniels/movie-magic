@@ -13,11 +13,29 @@ var genreTwo = $("#genre-2");
 var genreThree = $("#genre-3");
 var searchable=$(".searchable");
 var numberOfMovies=$("#searchNumber");
+//initial page setup
+var setupHomePage=function(data){
+  var movieArray=[];
+  var moviePosterArray=[];5444444444444444
+  movieArray.push(data.movie-one);
+  movieArray.push(data.movie-two);
+
+
+}
+
+
 $(document).ready(function(){
   $(".searchForm").attr("style","visibility:collapse");
   $.get("/api/user_data").then(function(data) {
     $(".member-name").text(data.username);
     username=data.username;
+    $.get(`/api/userinformation:${username}`).then(function(data){
+      if(data.movie_one||data.movie_two||data.movie_three){
+        $(".searchForm").attr("style","visibility:visible")
+
+
+      }
+    })
     
   //    });
    });
@@ -32,7 +50,7 @@ var handleSubmit=function(event){
       "movie_one":movieone.val(),
       "movie_two":movieTwo.val(),
       "movie_three":movieThree.val(),
-      "actor_One":actorone.val(),
+      "actor_one":actorone.val(),
       "actor_two":actorTwo.val(),
       "actor_three":actorThree.val(),
       "director_one":directorOne.val(),
@@ -51,6 +69,7 @@ var handleSubmit=function(event){
     data:userInformation
 }).then(function(){
     console.log("postedInformation");
+    
     // location.reload();
 
 })
