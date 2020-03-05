@@ -19,7 +19,57 @@ module.exports = function(sequelize, DataTypes) {
     password: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    } ,
+     // dateOfBirth:{type:DataTypes.DATEONLY,
+    //         allowNull:true},
+    movie_one: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      },
+movie_two: {
+        type: DataTypes.STRING(50),
+        allowNull: true,
+        },
+movie_three: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      },
+actor_one: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      },
+actor_two: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      },
+actor_three: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      },
+director_one: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      },
+director_two: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      },
+director_three: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      },
+genre_one: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      },
+genre_two: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      },
+genre_three: {
+      type: DataTypes.STRING(50),
+      allowNull: true,
+      },
   });
   //  This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   User.prototype.validPassword = function(password) {

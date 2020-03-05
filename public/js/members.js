@@ -3,4 +3,8 @@ $(document).ready(function() {
   $.get("/api/user_data").then(function(data) {
     $(".member-name").text(data.username);
   });
+
+  $(".carousel-3d-autoplay-off").mdbCarousel3d({
+    autoplay: false
+  });
 });

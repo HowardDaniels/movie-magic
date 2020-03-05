@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "testtest",
-    "database": "movie_magicdb",
-    "host": "localhost",
+    "username": "l8yf3e47dmnjkbsf",
+    "password": "kdh2bbm0s6hslll7",
+    "database": "ny3nwb9jd5ea5ezq",
+    "host": "zf4nk2bcqjvif4in.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <title>Passport Authentication</title>
   <meta charset="UTF-8">
@@ -8,7 +7,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
   <link href="stylesheets/style.css" rel="stylesheet">
 </head>
-
 <body id="member-page">
   <nav class="navbar navbar-default">
   <div class="container-fluid bg-danger" >
@@ -16,23 +14,49 @@
       <a class="navbar-brand" style = "color: white;" href="/logout">
         Logout
       </a>
+      <div class="navbar-header ">
+        <a class="navbar-brand" style = "color: white;" href="/testingpage.html">
+          testing
+        </a>
     </div>
   </div>
 </nav>
   <div class="container">
     <div class="row">
-
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Welcome to Movie Magic, <span class="member-name" ></span></h2>
+      <div class="col-md-8 col-md-offset-2">
+        <h3>Welcome to Movie Magic, <span class="member-name" ></span></h3>
         <h3>Please fill your profile below:</h3>
         <form class="form-member bg-danger">
-          <fieldset disabled>
+          <label><h3 class="members-title">Your Favorite Movies</h3></label>
+            <div class="form-group" >
+              
+              <input type="text" id="movie-one" name = "movieOne"class="textInput" style="margin-top:2px;" placeholder="Favorite Movie 1">
+              <input type="text" id="movie-two" name="movieTwo" class="textInput" style="margin-top:2px" placeholder="Favorite Movie 2">
+              <input type="text" id="movie-three" name="movieThree" class="textInput" style="margin-top:2px" placeholder="Favorite Movie 3">
+            </div>
+            <label ><h3 class="members-title">Your Favorite Actors</h3></label>
+
             <div class="form-group">
-              <label for="disabledTextInput">Disabled input</label>
-              <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+              <input type="text" id="actor-one" name = "actorOne"class="textInput" style="margin-top:2px" placeholder="Favorite Actor 1">
+              <input type="text" id="actor-two" name="actorTwo" class="textInput" style="margin-top:2px" placeholder="Favorite Actor 2">
+              <input type="text" id="actor-three" name="actorThree" class="textInput" style="margin-top:2px" placeholder="Favorite Actor 3">
+            </div>
+            <label for="actor_one"><h3 class="members-title">Your Favorite Directors</h3></label>
+
+            <div class="form-group">
+              <input type="text" id="Director-one" name = "DirectorOne"class="textInput" style="margin-top:2px" placeholder="Favorite Director 1">
+              <input type="text" id="Director-two" name="DirectorTwo" class="textInput" style="margin-top:2px" placeholder="Favorite Director 2">
+              <input type="text" id="Director-three" name="DirectorThree" class="textInput" style="margin-top:2px" placeholder="Favorite Director 3">
+            </div>
+            <label for="actor_one"><h3 class="members-title">Your Favorite Genre</h3></label>
+
+            <div class="form-group">
+              <input type="text" id="actor-one" name = "actorOne"class="textInput" style="margin-top:2px" placeholder="Favorite Actor 1">
+              <input type="text" id="actor-two" name="actorTwo" class="textInput" style="margin-top:2px" placeholder="Favorite Actor 2">
+              <input type="text" id="actor-three" name="actorThree" class="textInput" style="margin-top:2px" placeholder="Favorite Actor 3">
             </div>
             <div class="form-group">
-              <label for="username">select your username</label>
+              <label for="username"><h3 class="members-title">Your Favorite Username</h3 class="members-title"></label>
               <select id="disabledSelect" class="form-control">
                 <option>Disabled select</option>
               </select>
@@ -72,10 +96,7 @@
       </div>
     </div>
   </div>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/members.js"></script>
-
 </body>
-
 </html>
