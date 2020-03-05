@@ -1,8 +1,10 @@
+
 DROP DATABASE IF EXISTS ny3nwb9jd5ea5ezq;
 CREATE DATABASE ny3nwb9jd5ea5ezq;
 use ny3nwb9jd5ea5ezq;
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users (
+
 id INT NOT NULL AUTO_INCREMENT,
 username VARCHAR(100) NOT NULL,
 password VARCHAR(100)  NOT NULL,
@@ -20,7 +22,9 @@ genre_two VARCHAR(100) NULL,
 genre_three VARCHAR(100) NULL,
 PRIMARY KEY(id)
 );
-INSERT INTO Users (username, password, movie_one, movie_two, movie_three, actor_one, actor_two, actor_three, director_one,director_two, director_three, genre_one, genre_two, genre_three)
+
+INSERT INTO Users(username, password, movie_one, movie_two, movie_three, actor_one, actor_two, actor_three, director_one,director_two, director_three, genre_one, genre_two, genre_three)
+
 VALUES("shawnwhy","password","Brazil", "The Big Lebowski", "The Favorite", "Emily Blunt", "Christphe Waltz", "Rami Malek","Terry Gilliam","Alfonso Cuarón","Christopher Nolan","Action","Adventure","Sci-Fi"),
 ("RAbbit","password","JOJO Rabbit", "The Big Lebowski", "He Got Game", "Denzel Washington", "Milla Jovovitch","Paul Walker", "terrence malick","Terry Gilliam","Jean Renoir","Action","Adventure","Drama"),
 ("Leni","password","DASBOOT", "TROY", "Olympia", "Brad Pitt", "leslie Howard","Humphrey Bogart", "Orson Welles","Rob Cohn","James Wan","Action","Adventure","Drama"),
