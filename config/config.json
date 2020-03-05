@@ -1,11 +1,11 @@
 {
-  "development": {
-    "username": "elw0pptkq53ugc4j",
-    "password": "xvzc4lzyacx5w2l3",
-    "database": "kfv3lhx00o99x94w",
-    "host": "fugfonv8odxxolj8.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    "dialect": "mysql"
-  },
+    "development": {
+      "username": "l8yf3e47dmnjkbsf",
+      "password": "kdh2bbm0s6hslll7",
+      "database": "ny3nwb9jd5ea5ezq",
+      "host": "zf4nk2bcqjvif4in.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      "dialect": "mysql"
+    },
   "test": {
     "username": "root",
     "password": null,
