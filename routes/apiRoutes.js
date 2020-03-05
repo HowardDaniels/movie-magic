@@ -2,6 +2,7 @@ var db = require("../models");
 var passport = require("../config/passport");
 
 module.exports = function(app) {
+
   // If the user has valid login credentials, send them to the members page. Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
 
@@ -45,6 +46,36 @@ module.exports = function(app) {
       });
     }
   });
+
+
+  app.put("/api/submitUserInformation/:id", function(req, res){
+    var id = req.params.id;
+    console.log(id)
+    db.User.update(
+      {movie_one: req.body.movie_one,
+        movie_two:req.body.movie_two,
+        movie_three:req.body.movie_three,
+        actor_one:req.body.actor_one,
+        actor_two:req.body.actor_two,
+        actor_three:req.body.actor_three,
+        director_one:req.body.director_one,
+        director_two:req.body.director_two,
+        director_three:req.body.director_three,
+        genre_one:req.body.genre_one,
+        genre_two:req.body.genre_two,
+        genre_three:req.body.genre_three},
+      {where: {
+        username:id
+      }}
+    )
+    .then(function(data) {
+      res.json(data)
+    });
+    
+   })
+   
+     
+   
   /*
   //Saved tempalte data below
   // Get all examples

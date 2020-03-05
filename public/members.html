@@ -18,55 +18,60 @@
   </div>
 </nav>
   <div class="container">
+    
     <div class="row">
       <div class="col-md-8 col-md-offset-2">
-        <h3>Welcome to Movie Magic, <span class="member-name" ></span></h3>
-        <h3>Please fill your profile below:</h3>
-        <form class="form-member bg-danger">
-          <label><h3 class="members-title">Your Favorite Movies</h3></label>
+        <center><h2 style="font-weight:bold">Welcome to Movie Magic, <span class="member-name" ></span></h2></center>
+        <center><h3>Please fill your profile below:</h3></center>
+       <form class="searchForm"><lable>how many movie results would you like to see</lable><input type="number" id="searchNumber" style="width:50px;font-size: small;">
+        <button type="submit">Search Current Movies and Buddy Matches</button>
+      </form> 
+        <form id="infoForm" class="form-member bg-danger">
+          <label><h3 class="members-title">Please Enter Your Favorite Movies</h3></label>
             <div class="form-group" >
               
-              <input type="text" id="movie-one" name = "movieOne"class="textInput" style="margin-top:2px;" placeholder="Favorite Movie 1">
-              <input type="text" id="movie-two" name="movieTwo" class="textInput" style="margin-top:2px" placeholder="Favorite Movie 2">
-              <input type="text" id="movie-three" name="movieThree" class="textInput" style="margin-top:2px" placeholder="Favorite Movie 3">
+              
+              <input type="text"  name = "movieOne"class="textInput movie-one" style="margin-top:2px;" placeholder="Favorite Movie 1">
+              <input type="text"  name="movieTwo" class="textInput movie-two" style="margin-top:2px" placeholder="Favorite Movie 2">
+              <input type="text"  name="movieThree" class="textInput movie-three" style="margin-top:2px" placeholder="Favorite Movie 3">
             </div>
-            <label ><h3 class="members-title">Your Favorite Actors</h3></label>
+            <label ><h3 class="members-title">Please Enter Your Favorite Actors</h3></label>
             <div class="form-group">
-              <input type="text" id="actor-one" name = "actorOne"class="textInput" style="margin-top:2px" placeholder="Favorite Actor 1">
-              <input type="text" id="actor-two" name="actorTwo" class="textInput" style="margin-top:2px" placeholder="Favorite Actor 2">
-              <input type="text" id="actor-three" name="actorThree" class="textInput" style="margin-top:2px" placeholder="Favorite Actor 3">
+              <input type="text"  name = "actorOne"class="textInput actor-one" style="margin-top:2px" placeholder="Favorite Actor 1">
+              <input type="text"  name="actorTwo" class="textInput actor-two" style="margin-top:2px" placeholder="Favorite Actor 2">
+              <input type="text"  name="actorThree" class="textInput actor-three" style="margin-top:2px" placeholder="Favorite Actor 3">
             </div>
-            <label for="actor_one"><h3 class="members-title">Your Favorite Directors</h3></label>
+            <label><h3 class="members-title">Please Enter Your Favorite Directors</h3></label>
             <div class="form-group">
-              <input type="text" id="Director-one" name = "DirectorOne"class="textInput" style="margin-top:2px" placeholder="Favorite Director 1">
-              <input type="text" id="Director-two" name="DirectorTwo" class="textInput" style="margin-top:2px" placeholder="Favorite Director 2">
-              <input type="text" id="Director-three" name="DirectorThree" class="textInput" style="margin-top:2px" placeholder="Favorite Director 3">
+              <input type="text"  name = "DirectorOne"class="textInput director-one" style="margin-top:2px" placeholder="Favorite Director 1">
+              <input type="text"  name="DirectorTwo" class="textInput director-two" style="margin-top:2px" placeholder="Favorite Director 2">
+              <input type="text"  name="DirectorThree" class="textInput director-three" style="margin-top:2px" placeholder="Favorite Director 3">
             </div>
-            <label for="actor_one"><h3 class="members-title">Your Favorite Genre</h3></label>
+            <label ><h3 class="members-title">Please Select Your Favorite Genres</h3></label>
             <div class="form-group">
-              <select id="genres">
+              <select id="genre-1">
                 <option value="Action" selected>Favorite Genre 1</option>
                 <option value="Action">Action</option>
                 <option value="Drama">Drama</option>
                 <option value="Comedy">Comedy</option>
                 <option value="Mystery">Mystery</option>
-                <option value="Adventure">Adventure/option>
-                <option value="Fantasy">Fantasy/option>
+                <option value="Adventure">Adventure</option>
+                <option value="Fantasy">Fantasy</option>
                 <option value="Mystery">Mystery</option>
                 <option value="Sci-FI">Science Fiction</option>
               </select>
-              <select id="genres">
+              <select id="genre-2">
                 <option value="Comedy" selected>Favorite Genre 2</option>
                 <option value="Action">Action</option>
                 <option value="Drama">Drama</option>
                 <option value="Comedy">Comedy</option>
                 <option value="Mystery">Mystery</option>
-                <option value="Adventure">Adventure/option>
+                <option value="Adventure">Adventure</option>
                 <option value="Fantasy">Fantasy/option>
                 <option value="Mystery">Mystery</option>
                 <option value="Sci-FI">Science Fiction</option>
               </select>
-              <select id="genres">
+              <select id="genre-3">
                 <option value="Drama" selected>Favorite Genre 2</option>
                 <option value="Action">Action</option>
                 <option value="Drama">Drama</option>
@@ -98,7 +103,7 @@
             </div>-->
             <div class="form-group"> 
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="disabledFieldsetCheck">
+                <input class="form-check-input searchable" type="checkbox" value="false" >
                 Yes, include me in the buddy match. 
             
                 <label class="form-check-label" style = "color: white;" for="disabledFieldsetCheck">
@@ -109,13 +114,10 @@
               </div>
               
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button class="submitButton btn btn-primary">Submit Information</button>
           </fieldset>
         </form>
-        <form action="/results" method="GET">
-          <input style="float:center;" type="number" name="numberOfMOvies" placeholder="number of movie results">
-          <input type="submit">
-      </form>
+     
       </div>
     </div>
   </div>

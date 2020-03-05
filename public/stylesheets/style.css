@@ -62,8 +62,27 @@ background-position: center center;
 }
 .members-title {
   color: white;
+  margin:1px;
 }
 input {
   padding: 5px;
+ margin: 5px;
+ border-radius:2px;
+}
+
+select {
+  padding: 5px;
  margin: 10px;
+ border-radius:2px;
+
+}
+.form-group{
+  margin-top:10px;
+
+}
+button{
+  background-color: royalblue;
+  color:white;  
+  border-radius:2px;
+
 }
