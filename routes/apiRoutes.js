@@ -42,10 +42,36 @@ module.exports = function(app) {
       res.json({
         email: req.user.email,
         id: req.user.id,
-        username: req.user.username
+        username: req.user.username,
+        movie_one:req.user.movie_one,
+        movie_two:req.user.movie_two,
+        movie_three:req.user.movie_three,
+        actor_one:req.user.actor_one,
+        actor_two:req.user.actor_two,
+        actor_three:req.user.actor_three,
+        director_one:req.user.director_one,
+        director_two:req.user.director_two,
+        director_three:req.user.director_three,
+        genre_one:req.user.genre_one,
+        genre_two:req.user.genre_two,
+        genre_three:req.user.genre_three
+
+        
+
+
       });
     }
   });
+
+  // app.get("/api/userinformation/:id",function(req,res){
+  //   var id=req.params.id
+  //   console.log(id);
+  //   db.Users.findOne({where:{username:id}}).then(function(data){ 
+  //     res.json(data);
+
+  //   })
+   
+  // });
 
 
   app.put("/api/submitUserInformation/:id", function(req, res){
@@ -79,7 +105,7 @@ module.exports = function(app) {
   /*
   //Saved tempalte data below
   // Get all examples
-  app.get("/api/examples", function(req, res) {
+  app.get("/api/movies", function(req, res) {
     db.Example.findAll({}).then(function(dbExamples) {
       res.json(dbExamples);
     });

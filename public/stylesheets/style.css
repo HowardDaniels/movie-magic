@@ -86,3 +86,30 @@ button{
   border-radius:2px;
 
 }
+
+.posterContainer{
+  align-items: center;
+  text-align:center;
+ 
+
+
+}
+
+.posterFrame{
+  align-items: center;
+  text-align:center;
+  height:150px;
+  width:auto;
+  border:2px solid white;
+  float:left;
+  margin:4px auto;
+  margin-left:80px;
+
+
+
+}
+
+img{
+  max-width:100%;
+max-height:100%;
+}

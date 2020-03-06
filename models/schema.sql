@@ -1,5 +1,9 @@
 DROP DATABASE IF EXISTS movie_magic_db;
 CREATE DATABASE movie_magic_db;
+<<<<<<< HEAD
+
+
+=======
 use movie_magic_db;
 DROP TABLE IF EXISTS user;
 CREATE TABLE user(
@@ -25,3 +29,4 @@ VALUES("shawnwhy","password","Brazil", "The Big Lebowski", "The Favorite", "Emil
 ("RAbbit","password","JOJO Rabbit", "The Big Lebowski", "He Got Game", "Denzel Washington", "Milla Jovovitch","Paul Walker", "terrence malick","Terry Gilliam","Jean Renoir","Action","Adventure","Drama"),
 ("Leni","password","DASBOOT", "TROY", "Olympia", "Brad Pitt", "leslie Howard","Humphrey Bogart", "Orson Welles","Rob Cohn","James Wan","Action","Adventure","Drama"),
 ("Robertson","password","Avengers", "Antman", "Iron man", "Robert Downey jr", "Scarlett Johansson","Mark Ruffalo", "James Cameron","Christopher Nolan","Guillermo del Toro","Action","Adventure","Drama")
+>>>>>>> e0e8ee9b1e59f4d32bd26bd8b2e950f77ebc9433

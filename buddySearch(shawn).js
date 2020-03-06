@@ -1,11 +1,11 @@
 // var db = require("../models");
-const axios = require('axios').default;
+var axios = require('axios').default;
 var moment = require('moment');
 var request = require('ajax-request');
 var $ = require('jQuery')
 var mysql = require("mysql");
 // var inquirer = require("inquirer");
-const cTable = require('console.table');
+var cTable = require('console.table');
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -33,7 +33,7 @@ var buddyArray=[]
 
 
 var buddySearchThree= function(){
-    connection.query("SELECT * FROM USER where username !=?",MyUserName,function(err, data){
+    connection.query("SELECT * FROM users where username !=?",MyUserName,function(err, data){
         var users = data;
         console.log(users);
         for(var i=0; i< users.length; i++){
@@ -197,7 +197,7 @@ var buddySearchTwo = function(){
 var BuddySearchOne = function(){
     
     
-    connection.query("SELECT * FROM user WHERE username=?",MyUserName,function(err, data){
+    connection.query("SELECT * FROM Users WHERE username=?",MyUserName,function(err, data){
       if(err) throw err;
       console.log(data);
     
@@ -214,5 +214,11 @@ var BuddySearchOne = function(){
     
       BuddySearchOne();
         
-        
+
+
+      module.exports={
+          BuddySearch:BuddySearchOne,
+          buddySearchTwo:buddySearchTwo,
+          buddySearchThree:buddySearchThree
+          }
         
