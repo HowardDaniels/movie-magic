@@ -33,7 +33,7 @@ $(document).ready(function() {
       password: password
     })
       .then(function(data) {
-        window.location.replace("/members");
+        window.location.replace("/login");
       })
       .catch(handleLoginErr);
   }

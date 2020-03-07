@@ -104,9 +104,18 @@ button{
   float:left;
   margin:4px auto;
   margin-left:80px;
+}
 
-
-
+.buddyFrame{
+  align-items: center;
+  text-align:center;
+  background-color: lightblue;
+  border-radius: 5px;
+  padding:8px;
+  color:darkred;
+  height:150px;
+  float:left;
+  margin-right:10px;
 }
 
 img{

@@ -29,8 +29,8 @@
         </div></center></div>
         <center><h2 style="font-weight:bold">Welcome to Movie Magic, <span class="member-name" ></span></h2></center>
         <center><h3>Please fill your profile below:</h3></center>
-       <form class="searchForm"><lable>how many movie results would you like to see</lable><input type="number" id="searchNumber" style="width:50px;font-size: small;">
-        <button type="submit">Search Current Movies and Buddy Matches</button>
+       <form class="searchForm"action="/results"><lable>how many movie results would you like to see</lable><input type="number" id="searchNumber" style="width:50px;font-size: small;"value=5 max=10>
+        <button id="searchButton" type="submit"action="/result">Search Current Movies and Buddy Matches</button>
       </form> 
         <form id="infoForm" class="form-member bg-danger">
           <label><h3 class="members-title">Please Enter Your Favorite Movies</h3></label>

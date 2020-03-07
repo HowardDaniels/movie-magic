@@ -1,12 +1,11 @@
 // var db = require("../models");
-const axios = require('axios').default;
+var axios = require('axios').default;
 var moment = require('moment');
 var request = require('ajax-request');
 var $ = require('jQuery')
 var mysql = require("mysql");
 // var inquirer = require("inquirer");
-const cTable = require('console.table');
-var dotenv=require("dotenv");
+var cTable = require('console.table');
 
 var connection = mysql.createConnection({
   host: "ryvdxs57afyjk41z.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
@@ -22,7 +21,6 @@ var connection = mysql.createConnection({
   database: "bdzjm9wt2q1l3qxk"
 });
 
-
 var favMovies=[];
 var favActors =[];
 var favDirectors=[];
@@ -30,14 +28,13 @@ var favGenres=[];
 var miscNames=[];
 var chosenMovies=[];
 var resultTitles=[];
-var GnumberofMovies=10;
-var MyUserName;
+numberOfMovies=10
+
 
 var movieSearchFour = function(){
-  // console.log("4"+GnumberofMovies);
-  // numberOfMovies=numberOfMovies
-  // console.log("numberofmovies"+GnumberofMovies);
-  //sort the array  of the movie objects and pick out the the top ones numbered as the numberOfMovies Variable
+  numberOfMovies=numberOfMovies
+  console.log("numberofmovies"+numberOfMovies);
+  //sort the array  of the movie objects and pick out the the top ones numbered as the numberOfMOvies Variable
 
   for (let i=1; i<chosenMovies.length; i++){
     let j=i-1;
@@ -50,45 +47,19 @@ var movieSearchFour = function(){
     chosenMovies[j+1]=tmp
     
 }
-chosenMovies=chosenMovies.splice(0,GnumberofMovies);
-chosenMovies=JSON.stringify(chosenMovies);
-connection.query("INSERT INTO SearchMovieData(username,movieResults)VALUES(?,?)",[MyUserName,chosenMovies],function(err, result){
-  if(err) throw err;
-  console.log(result);
-});
+chosenMovies=chosenMovies.splice(0,numberOfMovies);
+for(var i=0;i<chosenMovies.length;i++){
+  console.log(chosenMovies[i].title+chosenMovies[i].movieScore);
+  // connection.end();
+
 }
 
-// for(var i=0;i<chosenMovies.length;i++){
-  // console.log(chosenMovies[i].title+chosenMovies[i].movieScore);
-  // connection.end();}
-//   axios.post("/api/deploybuddies/"+MyUserName,{
-    
-//     "chosenMoviesArray":chosenMovies
-//   })
-//   .then(function(response){
-//     console.log(response);
-//   })
-//   .catch(function(err){
-//     console.log(err)
-//   })
 
-// }
-
-// axios.post('/user', {
-//   firstName: 'Fred',
-//   lastName: 'Flintstone'
-// })
-// .then(function (response) {
-//   console.log(response);
-// })
-// .catch(function (error) {
-//   console.log(error);
-// });
+}
 
 
 
 var movieSearchThree = function(){
-  // console.log("3"+GnumberofMovies);
   var now = moment();
   var weekinpast=now.endOf("weeks").subtract(1,"weeks").subtract(1,"days").format("YYYY-MM-DD").toString();
   var weekinfuture=now.endOf("weeks").add(1, "weeks").subtract(1,"days").format("YYYY-MM-DD").toString();
@@ -96,7 +67,7 @@ var movieSearchThree = function(){
    
    
   var queryURL= `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&primary_release_date.gte=${weekinpast}&primary_release_date.lte=${weekinfuture}&api_key=7a56247c125d9cfd74900b9921c62fc7&language=en-US`;
-  // console.log(queryURL);
+  console.log(queryURL);
   
 
   request({
@@ -115,7 +86,7 @@ var movieSearchThree = function(){
         if(results[i].original_language==='en'){
       resultTitles.push(results[i].original_title);};
           }
-      // console.log(resultTitles);
+      console.log(resultTitles);
 
     
       //start of the operataion to search for info on each movie
@@ -123,7 +94,7 @@ var movieSearchThree = function(){
     //for each of the fond movie titles, a query is made to collect all of the cast and crew informaiton 
       //of the collected movies
       queryURL=`http://www.omdbapi.com/?T=${resultTitles[i]}&apikey=7e6191f4`;
-      // console.log(queryURL);
+      console.log(queryURL);
       axios.get(queryURL)
       .then(function(response){
         // var response=response;
@@ -149,7 +120,7 @@ var movieSearchThree = function(){
         var newFoundGenreString=response.Genre;  
         var newFoundWriterString=response.Writer;
         var newFoundPoster=response.Poster;
-        // console.log(score+"score");
+        console.log(score+"score");
 
         newFoundActorArray=newFoundActorString.split(",");
       for(i=0; i<newFoundActorArray.length; i++){
@@ -204,9 +175,9 @@ var movieSearchThree = function(){
           if (miscNames.indexOf(newFoundMiscArray[i])>-1){
             score++;
           }};
-          // console.log(score+"newScore");
+          console.log(score+"newScore");
 
-      var tomatoTitle=response.Title.replace(/ /g,"_");
+      var tomatoTitle=response.Title.replace(" ","_");
       var newRottenTomatoLink = `https://www.rottentomatoes.com/m/${tomatoTitle}`;
       // console.log("score"+score);
       // console.log(response.Title);
@@ -226,11 +197,9 @@ var movieSearchThree = function(){
 
          }
         ).catch(function(err){
-            console.log("ERRRS"+err);})}setTimeout(function(){
-              // console.log("chosenmovies         "+JSON.stringify(chosenMovies));
+            console.log("ERRRS"+err);})}setTimeout(function(){console.log("chosenmovies         "+JSON.stringify(chosenMovies));
 
             movieSearchFour();
-            // cb(chosenMovies)
           },1000)
           }
 
@@ -240,7 +209,6 @@ var movieSearchThree = function(){
 
 
 var movieSearchTwo = function(){
-  // console.log("2"+GnumberofMovies);
    
   // favActors=favActors;
   // favDirectors=favDirectors;
@@ -252,7 +220,7 @@ var movieSearchTwo = function(){
   //the information is then pushed into the miscnames array.
   for (var i=0; i<favMovies.length;i++){
   var queryURL=`http://www.omdbapi.com/?T=${favMovies[i]}&apikey=7e6191f4`;
-  // console.log(queryURL);
+  console.log(queryURL);
 
   axios.get(queryURL)
   .then(function(response){
@@ -300,7 +268,6 @@ var movieSearchTwo = function(){
           miscNames.push(foundDirectors[i])};
         for(i=0; i<foundGenre.length; i++){
           miscNames.push(foundGenre[i])};
-          
 
 
       
@@ -312,23 +279,21 @@ var movieSearchTwo = function(){
   
   ).catch(function(err){
     console.log("ERRRS"+err);})
-    } setTimeout(function(){
-      // console.log(miscNames);
-    // console.log(favActors,favDirectors,favGenres,favMovies);
+    } setTimeout(function(){console.log(miscNames);
+    console.log(favActors,favDirectors,favGenres,favMovies);
     movieSearchThree()},1000);
   
   
 }
 
 
-var movieSearchOne = function(id,numberofMovies,){
-MyUserName = id
- GnumberofMovies=numberofMovies;
-//  console.log("1"+GnumberofMovies);
+var movieSearchOne = function(){
+var MyUserName = "shawnwhy"
 
-connection.query("SELECT * FROM Users WHERE username=?",MyUserName,function(err, data){
+
+connection.query("SELECT * FROM users WHERE username=?",MyUserName,function(err, data){
   if(err) throw err;
-  // console.log(data);
+  console.log(data);
 
     
      //pushes the hardcoded names and information into relevant arrays
@@ -336,12 +301,15 @@ connection.query("SELECT * FROM Users WHERE username=?",MyUserName,function(err,
     favActors.push(data[0].actor_one, data[0].actor_two, data[0].actor_three);
     favDirectors.push(data[0].director_one, data[0].director_two, data[0].director_three);
     favGenres.push(data[0].genre_one, data[0].genre_two, data[0].genre_three);
-    // console.log(favActors,favDirectors,favGenres,favMovies);
+    console.log(favActors,favDirectors,favGenres,favMovies);
     movieSearchTwo();
-    // cb(chosenMovies);
   
   })};
 
+  movieSearchOne();
+    
+    
+    
   module.exports={
     movieSearch:movieSearchOne,
     movieSearchTwo:movieSearchTwo,
@@ -349,10 +317,6 @@ connection.query("SELECT * FROM Users WHERE username=?",MyUserName,function(err,
     movieSearchFour:movieSearchFour
 
     };
-
-    
-    
-
 
 
 

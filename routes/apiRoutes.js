@@ -1,5 +1,21 @@
 var db = require("../models");
 var passport = require("../config/passport");
+var movieSearch = require("../public/js/movie-search");
+var buddySearch = require("../public/js/buddy-search")
+var mysql = require("mysql");
+var connection = mysql.createConnection({
+  host: "ryvdxs57afyjk41z.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+
+  // Your port; if not 3306
+  port: 3306,
+
+  // Your username
+  user: "e0g58615ouuxd4ls",
+
+  // Your password
+  password: "bva6gv2ax0zhrlyn",
+  database: "bdzjm9wt2q1l3qxk"
+});
 
 module.exports = function(app) {
 
@@ -29,8 +45,39 @@ module.exports = function(app) {
   app.get("/logout", function(req, res) {
     req.logout();
     res.redirect("/");
-  });
+  })
 
+  // app.post("/api/deploymovies/:id",function(req, res){
+  //   var username=req.params.id;
+  //    var movieResults=req.data.chosenMoviesArray;
+  //    movieResults=JSON.stringify(movieResults);
+  //  db.SeachMovieData.create({
+  //    username:username,
+  //    movieResults:movieResults})
+  //    .then(function(result){res.json(result)})
+  //    .catch(function(err) {
+  //      res.status(401).json(err);
+
+  //  }) 
+  //  });
+ 
+  // app.post("/api/deploybuddies/:id",function(req, res){
+  //   var username=req.params.id
+  //   var chosenbuddies=req.data.chosenBuddies;
+  //   chosenbuddies=JSON.stringify(chosenbuddies);
+  //   db.SeachBuddyData.create({
+  //     username:username,
+  //     movieREsults:chosenbuddies})
+  //     .then(function(result){res.json(result)})
+  //     .catch(function(err) {
+  //       res.status(401).json(err);
+ 
+  //   }) 
+  //   });
+  
+    
+  
+  
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function(req, res) {
     if (!req.user) {
@@ -72,8 +119,36 @@ module.exports = function(app) {
   //   })
    
   // });
+  app.get("/api/movieSearchInfo/:id",function(req,res){
+    var id=req.params.id;
+   connection.query("SELECT * FROM SearchMovieData WHERE username=?",id,function(err,data){
+     if(err) throw err;
+     res.json(data);
+
+   })
+
+  })
+  app.get("/api/buddySearchInfo/:id",function(req,res){
+    var id=req.params.id;
+   connection.query("SELECT * FROM SearchBuddyData WHERE username=?",id,function(err,data){
+     if(err) throw err;
+     res.json(data);
+
+   })
+  })
+
+   
+
+  app.post("/api/search/:id",function(req,res){
+    var id=req.params.id;
+    var numberofMovies=req.body.numberMovies;
+    console.log(numberofMovies);
+    movieSearch.movieSearch(id,numberofMovies);
+     buddySearch.buddySearch(id);
+})
 
 
+   
   app.put("/api/submitUserInformation/:id", function(req, res){
     var id = req.params.id;
     console.log(id)
@@ -98,6 +173,20 @@ module.exports = function(app) {
       res.json(data)
     });
     
+   })
+
+   app.delete("/api/deleteSearch",function(req,res){
+     connection.query("DELETE FROM SearchBuddyData",function(err,result){
+      if(err) throw err;
+      res.json(result);
+
+     })
+
+     connection.query("DELETE FROM SearchMovieData",function(err,result){
+       if(err) throw err;
+       res.json(result);
+     })
+
    })
    
      

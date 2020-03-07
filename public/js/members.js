@@ -1,3 +1,4 @@
+// import { post } from "ajax-request";
 
 
 
@@ -97,7 +98,7 @@ var handleSubmit=function(event){
 }).then(function(){
     console.log("postedInformation");
     
-    // location.reload();
+    location.reload();
 
 })
 
@@ -116,8 +117,24 @@ $(".searchable").on('change', function() {
   }
   
 });
-   
+var handleSearch=function(event){
+  event.stopPropagation;
+  event.preventDefault;
+  numberOfMovies=numberOfMovies.val();
+  console.log(numberOfMovies);
+  $.ajax({
+    url:"/api/search/"+username,
+    type:"post",
+    data:{"numberMovies":numberOfMovies}
+  }).then(function(){
+    console.log("searching");
+    location.replace("/results");
+  })
+  
+}   
 
+
+$("#searchButton").on("click",handleSearch);
 
 
 //

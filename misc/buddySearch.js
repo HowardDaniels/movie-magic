@@ -28,17 +28,16 @@ var favActors =[];
 var favDirectors=[];
 var favGenres=[];
 var miscNames=[];
-// numberOfMovies=10
+numberOfMovies=10
 var MyUserName = "shawnwhy"
 var buddyArray=[]
 
 
 
 var buddySearchThree= function(){
-    // console.log(MyUserName)
     connection.query("SELECT * FROM Users where username !=?",MyUserName,function(err, data){
         var users = data;
-        // console.log(users);
+        console.log(users);
         for(var i=0; i< users.length; i++){
              var buddyScore=0;
 
@@ -81,21 +80,20 @@ var buddySearchThree= function(){
             var allNamesList=[];
             allNamesList.push(users[i].actor_one,users[i].actor_two,users[i].actor_three,users[i].director_one,users[i].director_two,users[i].director_three,);
             allNamesList.push(users[i].genre_one,users[i].genre_two,users[i].genre_three);
-            // console.log(allNamesList);
+            console.log(allNamesList);
 
             if(miscNames.indexOf(allNamesList)>-1){
                 buddyScore+=1;}
            
-            // console.log("score =" + buddyScore);
+            console.log("score =" + buddyScore);
             var buddyObject={
                 username:users[i].username,
                 score:buddyScore
-            };
-            // console.log(JSON.stringify(buddyObject));
+            }
+            console.log(JSON.stringify(buddyObject));
             buddyArray.push(buddyObject);
         }
-        setTimeout(function(){
-            // console.log(buddyArray)
+        setTimeout(function(){console.log(buddyArray)
             for (let i=1; i<buddyArray.length; i++){
                 let j=i-1;
                 let tmp = buddyArray[i];
@@ -106,24 +104,7 @@ var buddySearchThree= function(){
                 }
                 buddyArray[j+1]=tmp};
             buddyArray=buddyArray.splice(0,4);
-            buddyArray=JSON.stringify(buddyArray);
-connection.query("INSERT INTO SearchBuddyData(username,buddyREsults)VALUES(?,?)",[MyUserName,buddyArray],function(err, result){
-  if(err) throw err;
-  console.log(result);
-});
-
-            
-            // axios.post("/api/deploybuddies"+MyUserName,{
-              
-            //     "chosenBuddies":buddyArray
-            //   })
-            //   .then(function(response){
-            //     console.log(response);
-            // })
-            //   .catch(function(err){
-            //     console.log(err)
-            //   })
-            
+            console.log( buddyArray);
 
 
             },1000);
@@ -138,7 +119,6 @@ connection.query("INSERT INTO SearchBuddyData(username,buddyREsults)VALUES(?,?)"
 }
 
 var buddySearchTwo = function(){
-    // console.log(MyUserName)
    
     // favActors=favActors;
     // favDirectors=favDirectors;
@@ -149,7 +129,7 @@ var buddySearchTwo = function(){
     //the information is then pushed into the miscnames array.
     for (var i=0; i<favMovies.length;i++){
     var queryURL=`http://www.omdbapi.com/?T=${favMovies[i]}&apikey=7e6191f4`;
-    // console.log(queryURL);
+    console.log(queryURL);
   
     axios.get(queryURL)
     .then(function(response){
@@ -158,7 +138,7 @@ var buddySearchTwo = function(){
   
     var response=response.data;
    
-    //   console.log(response);
+      // console.log(response);
         var foundActors=response.Actors;
         var foundDirectors=response.Director;
         var foundGenre=response.Genre;
@@ -208,21 +188,20 @@ var buddySearchTwo = function(){
     
     ).catch(function(err){
       console.log("ERRRS"+err);})
-      } setTimeout(function(){
-        //   console.log(miscNames);
-    //   console.log(favActors,favDirectors,favGenres,favMovies);
+      } setTimeout(function(){console.log(miscNames);
+      console.log(favActors,favDirectors,favGenres,favMovies);
       buddySearchThree()},1000);
     
     
   }
   
 
-var BuddySearchOne = function(id){
-   MyUserName=id 
+var BuddySearchOne = function(){
+    
     
     connection.query("SELECT * FROM Users WHERE username=?",MyUserName,function(err, data){
       if(err) throw err;
-    //   console.log(data);
+      console.log(data);
     
         
          //pushes the hardcoded names and information into relevant arrays
@@ -230,16 +209,17 @@ var BuddySearchOne = function(id){
         favActors.push(data[0].actor_one, data[0].actor_two, data[0].actor_three);
         favDirectors.push(data[0].director_one, data[0].director_two, data[0].director_three);
         favGenres.push(data[0].genre_one, data[0].genre_two, data[0].genre_three);
-        // console.log(favActors,favDirectors,favGenres,favMovies);
+        console.log(favActors,favDirectors,favGenres,favMovies);
         buddySearchTwo();
       
       })};
     
-     
+      BuddySearchOne();
+        
 
 
       module.exports={
-          buddySearch:BuddySearchOne,
+          BuddySearch:BuddySearchOne,
           buddySearchTwo:buddySearchTwo,
           buddySearchThree:buddySearchThree
           }
