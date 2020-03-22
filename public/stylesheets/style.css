@@ -2,6 +2,7 @@ html::-webkit-scrollbar{
   display: none;
   height: 100%;
   overflow: auto;
+
 }
  
 .list-group-item {
@@ -13,16 +14,14 @@ form.login {
 }
 .login-title {
   color: white;
-  
+  font-family: cursive;
+
 }
+
 .login-body {
-  background-image: url("./images/thea_7.jpg") !important;
-  position: relative;
-  overflow: hidden;
-  background-size: 100%;
-background-size:     cover;                      /* <------ */
-background-repeat:   no-repeat;
-background-position: center center;
+  background-image: url("./images/thea_7.jpg") !important; 
+  background-position: center center;
+
   
 }
 .login-screen {
@@ -30,16 +29,23 @@ background-position: center center;
   
 }
 .row-login {
-  margin-top: 200px;
+  margin-top: 150px;
   padding-bottom: 50px;
   color: white;
-  border-radius: 25px;
-  background-color: orange;
+  background-color:#808080;
   opacity: .8;
+  width: 360px;
+  font-family: cursive;
+
 }
 label, .login-text {
   color:  white;
+  font-family: cursive;
+
+  
 }
+
+
 #member-page {
 background-image: url("./images/thea_6.jpg") !important; 
 background-size: 100%;
@@ -72,13 +78,13 @@ select {
 }
 .form-group{
   margin-top:10px;
+  
 
 }
 button{
   background-color: royalblue;
   color:white;  
   border-radius:2px;
-
 }
 
 .posterContainer{
