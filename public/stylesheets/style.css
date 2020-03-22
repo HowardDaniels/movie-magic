@@ -1,15 +1,9 @@
-
-
-
 html::-webkit-scrollbar{
   display: none;
-}
-
-
- html {
   height: 100%;
   overflow: auto;
 }
+ 
 .list-group-item {
   line-height: 2.5;
 }
@@ -40,7 +34,7 @@ background-position: center center;
   padding-bottom: 50px;
   color: white;
   border-radius: 25px;
-  background-color:#34495E ;
+  background-color: orange;
   opacity: .8;
 }
 label, .login-text {
