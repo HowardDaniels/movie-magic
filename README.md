@@ -11,3 +11,5 @@ This application uses OMDB API to search movie data, as well as MySQL to store u
 The business impact of this application is the ability for movies to receive increased publicity through recommendations and social networks developed through the buddy search.
 
 Future developments to this project include adding geolocation to prioritize nearby buddies in the search, as well as messaging between buddies.
+
+Live Demo: https://infinite-inlet-20359.herokuapp.com
