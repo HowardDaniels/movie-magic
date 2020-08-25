@@ -1,4 +1,4 @@
-# movie-magic
+# Movie-Magic
 
 This application allows the user to find movies and fellow movie buffs (called "buddies") based on information they provide in a form which is accessed upon signing up or logging in.
 
@@ -13,3 +13,29 @@ The business impact of this application is the ability for movies to receive inc
 Future developments to this project include adding geolocation to prioritize nearby buddies in the search, as well as messaging between buddies.
 
 Live Demo: https://infinite-inlet-20359.herokuapp.com
+
+
+## Usage
+
+1. User can sign up or log in at the starting page.
+
+2. Afterwards, the user will be taken to the user page.  
+where some movie related information about the user
+can be submitted. 
+
+3. The three favorite movie of the user 
+will be show atop the user page as decorative posters.
+
+![](giphymovie1.gif)
+
+![](giphymovie2.gif)
+
+4. Afterwards, the user can submit search. 
+then they will be taken to the results page, 
+where movie posters of the currently showing
+movies will be displayed. 
+
+![](giphymovie3.gif)
+
+on the bottom, the app will find buddies for the 
+users that have the most in common with them.
